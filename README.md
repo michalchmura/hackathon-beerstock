@@ -7,4 +7,4 @@
 ### Crontab script for Raspberry PI
 
 1. `crontab -e` opens `crontab` for editing
-2. `* * * * * /home/pi/webcam.sh 2>&1` schedule taking pictures every minute
+2. `* * * * * /home/pi/hackathon-frige-monitoring/scripts/webcam.sh 2>&1` schedule taking pictures every minute
