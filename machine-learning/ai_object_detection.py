@@ -118,7 +118,7 @@ jsonStructure="""
 		\"input\": \"""" + args["image"] + """\",
 		\"output\": \"output/""" + current_time + """.jpg\"
 	},
-	\"labels\":
+	\"results\":
 		""" + result.labelsToJSON() + """
 }
 """
