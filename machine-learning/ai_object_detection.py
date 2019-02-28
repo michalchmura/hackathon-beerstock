@@ -104,7 +104,7 @@ for i in np.arange(0, detections.shape[2]):
 			cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
 
 # Set current time as variable
-current_time = time.strftime("%Y-%m-%d_%H:%M:%S")
+current_time = time.strftime("%Y-%m-%d_%H-%M-%S")
 outputFilePath = "./output/" + current_time + ".jpg"
 
 # Save output file with date time format
