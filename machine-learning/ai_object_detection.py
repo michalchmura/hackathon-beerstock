@@ -108,7 +108,7 @@ current_time = time.strftime("%Y-%m-%d_%H:%M:%S")
 outputFilePath = "./output/" + current_time + ".jpg"
 
 # Save output file with date time format
-# cv2.imwrite(outputFilePath, image)
+cv2.imwrite(outputFilePath, image)
 
 # show the output image
 # cv2.imshow("Output", image)
