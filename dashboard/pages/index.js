@@ -16,20 +16,3 @@ export default () => (
     )}
   </MyContext.Consumer>
 );
-
-// const Home = () => {
-//   return (
-//     <PageWrapper>
-//       <ContentWrapper>
-//         <Card>asd</Card>
-//         <Card>efg</Card>
-//       </ContentWrapper>
-//       {/* <div class="columns">
-//         <div class="column">Mate 👍 / 👎</div>
-//         <div class="column">Second column</div>
-//       </div> */}
-//     </PageWrapper>
-//   );
-// };
-
-// export default Home;
