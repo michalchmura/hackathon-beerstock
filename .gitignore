@@ -63,3 +63,4 @@ typings/
 # Ignore output and input files
 output/
 images/
+static/fonts/
