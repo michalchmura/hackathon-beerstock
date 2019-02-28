@@ -12,10 +12,11 @@ import json
 # Define class for our Result return object
 class Result:
 	labels = []
-	def print(self):
-		print("Hi")
 	def labelsToJSON(self):
 		return json.dumps(self.labels, default=lambda o: o.__dict__, 
+				sort_keys=True, indent=4)
+	def toJSON(self):
+		return json.dumps(self, self.labels, default=lambda o: o.__dict__, 
 				sort_keys=True, indent=4)
 	
 
@@ -104,15 +105,25 @@ for i in np.arange(0, detections.shape[2]):
 
 # Set current time as variable
 current_time = time.strftime("%Y-%m-%d_%H:%M:%S")
+outputFilePath = "./output/" + current_time + ".jpg"
 
 # Save output file with date time format
-# cv2.imwrite("./output/" + current_time + ".jpg", image)
+cv2.imwrite(outputFilePath, image)
 
 # show the output image
 # cv2.imshow("Output", image)
-# print(result.labels)
-# json.dump(result)
-print(result.labelsToJSON())
-# print(result.labels.toJSON())
+jsonResultStructure="""
+{
+	\"info\": {
+		\"input\": \"""" + args["image"] + """\",
+		\"output\": \"""" + outputFilePath + """.jpg\",
+	},
+	\"labels\": {
+		""" + result.labelsToJSON() + """
+	}
+}
+"""
+
+print(jsonResultStructure)
 
 cv2.waitKey(0)
