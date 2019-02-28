@@ -1,0 +1,16 @@
+@import '../node_modules/bulma/bulma';
+@import './fonts.scss';
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f2f5f7;
+  font-family: 'Klarna Sans';
+}
+
+// Hide scrollbar
+::-webkit-scrollbar {
+  display: none;
+}

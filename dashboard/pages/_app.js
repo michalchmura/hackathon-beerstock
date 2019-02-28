@@ -1,14 +1,15 @@
-import React from 'react';
 import App, { Container } from 'next/app';
+import Page from '../components/Page';
+import MyProvider from '../components/MyProvider';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
-
+    // this exposes the query to the user
+    pageProps.query = ctx.query;
     return { pageProps };
   }
 
@@ -17,7 +18,11 @@ class MyApp extends App {
 
     return (
       <Container>
-        <Component {...pageProps} />
+        <MyProvider>
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+        </MyProvider>
       </Container>
     );
   }
