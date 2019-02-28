@@ -7,6 +7,33 @@ import numpy as np
 import argparse
 import cv2
 import time
+import json
+
+# Define class for our Result return object
+class Result:
+	labels = []
+	def print(self):
+		print("Hi")
+	def labelsToJSON(self):
+		return json.dumps(self.labels, default=lambda o: o.__dict__, 
+				sort_keys=True, indent=4)
+	
+
+# Initialize result object
+result = Result()
+
+class Label:
+	label = ""
+	confidence = ""
+	def __init__(self, label, confidence):
+		self.label = label
+		self.confidence = confidence
+	def display(self):
+		print('Label: ' + self.label)
+		print('Confidence: ', self.confidence)
+	def toJSON(self):
+		return json.dumps(self, default=lambda o: o.__dict__, 
+				sort_keys=True, indent=4)
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -62,9 +89,13 @@ for i in np.arange(0, detections.shape[2]):
 		box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
 		(startX, startY, endX, endY) = box.astype("int")
 
-		# display the prediction
+		# Create the label object
+		labelObj = Label(CLASSES[idx], "{:.5f}".format(confidence))
+		# Add the Labels to the result array
+		result.labels.append(labelObj)
+
 		label = "{}: {:.2f}%".format(CLASSES[idx], confidence * 100)
-		print("[INFO] {}".format(label))
+		# print("[INFO] {}".format(label))
 		cv2.rectangle(image, (startX, startY), (endX, endY),
 			COLORS[idx], 2)
 		y = startY - 15 if startY - 15 > 15 else startY + 15
@@ -75,9 +106,13 @@ for i in np.arange(0, detections.shape[2]):
 current_time = time.strftime("%Y-%m-%d_%H:%M:%S")
 
 # Save output file with date time format
-cv2.imwrite("./output/" + current_time + ".jpg", image)
+# cv2.imwrite("./output/" + current_time + ".jpg", image)
 
 # show the output image
 # cv2.imshow("Output", image)
+# print(result.labels)
+# json.dump(result)
+print(result.labelsToJSON())
+# print(result.labels.toJSON())
 
 cv2.waitKey(0)
