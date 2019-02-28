@@ -57,7 +57,7 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
 # load our serialized model from disk
-print("[INFO] loading model...")
+# print("[INFO] loading model...")
 net = cv2.dnn.readNetFromCaffe(args["prototxt"], args["model"])
 
 # load the input image and construct an input blob for the image
@@ -70,7 +70,7 @@ blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 0.007843, (300, 300)
 
 # pass the blob through the network and obtain the detections and
 # predictions
-print("[INFO] computing object detections...")
+# print("[INFO] computing object detections...")
 net.setInput(blob)
 detections = net.forward()
 
@@ -108,22 +108,23 @@ current_time = time.strftime("%Y-%m-%d_%H:%M:%S")
 outputFilePath = "./output/" + current_time + ".jpg"
 
 # Save output file with date time format
-cv2.imwrite(outputFilePath, image)
+# cv2.imwrite(outputFilePath, image)
 
 # show the output image
 # cv2.imshow("Output", image)
-jsonResultStructure="""
+jsonStructure="""
 {
 	\"info\": {
 		\"input\": \"""" + args["image"] + """\",
-		\"output\": \"""" + outputFilePath + """.jpg\",
+		\"output\": \"output/""" + current_time + """.jpg\"
 	},
-	\"labels\": {
+	\"labels\":
 		""" + result.labelsToJSON() + """
-	}
 }
 """
 
-print(jsonResultStructure)
+parsed = json.loads(jsonStructure)
+print(json.dumps(parsed, indent=4, sort_keys=True))
+# print(jsonStructure)
 
 cv2.waitKey(0)
