@@ -4,7 +4,7 @@ import IllustrationLearningAndDevelopment from '@bubble-ui/illustration-learning
 import IllustrationCreditRefusal from '@bubble-ui/illustration-credit-refusal';
 const ContentWrapper = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   grid-gap: 2rem;
   padding: 5rem;
 
@@ -40,7 +40,7 @@ const FridgeImage = styled.img`
   display: flex;
   justify-content: center;
   /* width: 100%; */
-  max-height: 300px;
+  max-height: 400px;
   box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
     0 5px 15px 0 rgba(0, 0, 0, 0.08);
   border-radius: 0.5rem;
@@ -79,18 +79,20 @@ const Dashboard = props => {
       <ContentWrapper>
         <div>
           <FridgeWebCamText>🎥 Fridge live cam</FridgeWebCamText>
-          <FridgeImage src="/static/2.jpg" width="300px" height="300px" />
+          <FridgeImage src="/static/1.jpg" width="400px" height="400px" />
         </div>
 
         <MateAvailability>
-          <span style={{ color: '#589E60' }}>Mate in stock!</span>
+          <span style={{ color: '#589E60' }}>
+            Mate in stock! <StyledIconSuccess />
+          </span>
         </MateAvailability>
-        <StyledIconSuccess />
 
         {/* <MateAvailability>
-          <span style={{ color: '#E66640' }}>Mate is out!</span>
-        </MateAvailability>
-        <StyledIconFailure /> */}
+          <span style={{ color: '#E66640' }}>
+            Mate is out! <StyledIconFailure />
+          </span>
+        </MateAvailability> */}
       </ContentWrapper>
     </LoadingComponent>
   );
